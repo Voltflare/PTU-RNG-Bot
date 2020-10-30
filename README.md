@@ -57,3 +57,11 @@ type_matrix = [
             - None
                 
 ***********************
+
+<b> How to use: </b>
+- `rng = PTU_RNG_Bot(types, type_matrix)` instantiates the bot with "types" and "type_matrix"
+- `rng.initialize_common_rarities()` initializes rarities of all Pokemon as "common"
+- `rng.create_common_encounter("Bulbasaur", "Grass", 2)` inserts common Pokemon "Bulbasaur" to matrix row "Grass"
+- `rng.create_rare_encounter("Greninja", "Dark")` inserts rare Pokemon "Greninja" to matrix row "Dark"
+- `rng.generate_team(4)` generates a random team of 4 Pokemon
+- `rng.print_type_matrix()` prints out the current Type Matrix
