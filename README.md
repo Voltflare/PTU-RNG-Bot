@@ -40,13 +40,20 @@ type_matrix = [
             - <b> pokemon_type: </b> the type of the Pokemon (where it will be added in the Type Matrix). The program does not check if you spelled it correctly (but it does check for cases), so please make sure you have spelled it right! It will generate an error if the Type that you specified does not exist.
                 - *note:* Types are singly indexed in this, so you could enter Bulbasaur into either Grass or Poison (but not both)
             - <b> rarity: </b> the relative rarity of the Pokemon. The higher the rarity, the more times the Pokemon will be entered into the Type Matrix.
+        - <b> <i> Sample Output: </i> </b> `Successfully added Bulbasaur (Rarity 2) to matrix row Grass.`
     - <i> create_rare_encounter(pokemon_name, pokemon_type): </i> This method will create a "rare" encounter with a rarity of 1 (the most uncommon). 
         - <b> <i> Parameters: </i> </b>
             - <b> pokemon_name: </b> the name of the Pokemon to be added to the table. The program does not check if you spelled it correctly (but it does check for cases), so please make sure you have spelled it right!
             - <b> pokemon_type: </b> the type of the Pokemon (where it will be added in the Type Matrix). The program does not check if you spelled it correctly (but it does check for cases), so please make sure you have spelled it right! It will generate an error if the Type that you specified does not exist.
                 - *note:* Types are singly indexed in this, so you could enter Bulbasaur into either Grass or Poison (but not both)
+        - <b> <i> Sample Output: </i> </b> `Successfully added rare Greninja to matrix row Dark.`
+    - <i> generate_team(): </i> This method generates a random team for a Trainer based on the contained type matrix.
+        - <b> <i> Parameters: </i> </b>
+            - None
+        - <b> <i> Sample Output: </i> </b> `Generated Team:  ['Manectric', 'Clefairy', 'Ninetales', 'Vulpix']`
     - <i> print_type_matrix(): </i> This method prints out the type matrix by type for ease of viewing.
         - <b> <i> Parameters: </i> </b>
+        - <b> <i> Sample Output: (One Row) </i> </b>  `Fairy: ["Azumarill", "Clefairy", "Granbull", "Mawile", "Sylveon", "Togetic"]`
             - None
                 
 ***********************

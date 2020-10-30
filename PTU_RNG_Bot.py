@@ -59,7 +59,7 @@ class PTU_RNG_Bot:
             
             #Sort by alphabetical value after adding mon to make it look pretty            
             self.type_matrix[common_mon_type].sort()  
-            print("Successfully added {} to matrix row {}.".format(pokemon_name, pokemon_type))
+            print("Successfully added {} (Rarity {}) to matrix row {}.".format(pokemon_name, rarity, pokemon_type))
             
             
             
@@ -93,7 +93,7 @@ class PTU_RNG_Bot:
             self.type_matrix[rare_mon_type].append(rare_mon)
             #Sort by alphabetical value after adding mon to make it look pretty
             self.type_matrix[rare_mon_type].sort() 
-            print("Successfully added {} to matrix row {}.".format(pokemon_name, pokemon_type))
+            print("Successfully added rare {} to matrix row {}.".format(pokemon_name, pokemon_type))
             
             
             
