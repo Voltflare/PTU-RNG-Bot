@@ -112,6 +112,24 @@ class PTU_RNG_Bot:
             team.append(generated_mon)
         print("Generated Team: ", team)
         
+    def random_from_type(self, type_of_mon, num_mons):
+        if type_of_mon not in self.types.keys():
+            print("Type is not present in matrix")
+            return
+        elif (not isinstance(num_mons, int)):
+            print("Input is not a valid number of Pokemon")
+            return
+        else:
+            #working match
+            team = []
+            for mon in range(0, num_mons):
+                #generate num_mons mons
+                type_of = list(self.types.keys()).index(type_of_mon)
+                randmon = random.choice(range(0, self.length_of_each_type[type_of]))
+                generated_mon = self.type_matrix[type_of][randmon]
+                team.append(generated_mon)
+            print("Generated Team: ", team)
+        
     def print_type_matrix(self):
         #pair of type_of_mon, row is like ("Dark", 0), etc
         print("---- Encounter Table: ----")
