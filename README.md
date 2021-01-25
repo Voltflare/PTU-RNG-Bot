@@ -69,15 +69,19 @@ encounter_table = [
         - <b> <i> Parameters: </i> </b>
             - None
         - <b> <i> Sample Output: (One Row) </i> </b>  `Fairy: ["Azumarill", "Clefairy", "Granbull", "Mawile", "Sylveon", "Togetic"]`
+    - <i> print_by_rarity(): </i> This method prints out the current state of the encounter table by rarity value, placing the highest rarities first and sorting by descending Pokemon name. Can be useful for those that want to intentionally reward certain encounters based on a dice roll.
+        - <b> <i> Parameters: </i> </b>
+            - None
+        - <b> <i> Sample Output: (One Row) </i> </b> `Fairy :  [(2, 'Togetic'), (2, 'Sylveon'), (2, 'Granbull'), (2, 'Comfey'), (2, 'Clefairy'), (2, 'Azumarill'), (2, 'Aromatisse'), (1, 'Clefable')]`
                 
 ***********************
 
 <b> How to use: </b>
-- `rng = PTU_RNG_Bot(types, encounter_table)` instantiates the bot with Types of "types" and Encounter Table of "encounter_table"
+- `rng = PTU_RNG_Bot(types, encounter_table)` instantiates the bot with Types of "types" and Encounter Table of "encounter_table".
 - `rng.initialize_common_rarities()` initializes rarities of all Pokemon currently within the encounter table as "common" (Rarity 2).
 - `rng.create_common_encounter("Bulbasaur", "Grass", 2)` inserts common Pokemon "Bulbasaur" to table row "Grass" with a Rarity of 2
-- `rng.create_rare_encounter("Greninja", "Dark")` inserts rare Pokemon "Greninja" to table row "Dark"
+- `rng.create_rare_encounter("Greninja", "Dark")` inserts rare Pokemon "Greninja" to table row "Dark".
 - `rng.remove_encounter("Bibarel", "Water", 2)` removes up to 2 instances of Bibarel from the Water row of the encounter table, provided Water is a Type specified within the encounter table and Bibarel exists within it.
-- `rng.generate_team(4)` generates a random team of 4 Pokemon
+- `rng.generate_team(4)` generates a random team of 4 Pokemon.
 - `rng.generate_monotype_team("Water", 4)` generates a random team of 4 Water-Type Pokemon, if Water is a Type specified with the encounter table.
-- `rng.print_encounter_table()` prints out the current encounter table
+- `rng.print_encounter_table()` and `rng.print_by_rarity()` print out the current encounter table.

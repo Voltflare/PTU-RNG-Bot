@@ -164,7 +164,7 @@ class PTU_RNG_Bot:
     
         #If we get to the end without running out of Pokemon to remove, just print the number that were removed
         if num_removed == 1:
-            print("Successfully removed", num_removed, "instance of", pokemon_to_remove, "from table row",type_belongs_to,".")
+            print("Successfully removed", num_removed, "instance of", pokemon_to_remove, "from row",type_belongs_to,".")
         else:
             print("Successfully removed", num_removed, "instances of", pokemon_to_remove, "from row",type_belongs_to,".")
         return
@@ -215,3 +215,19 @@ class PTU_RNG_Bot:
             print(type_of_mon,": ", printable_row)
         print("--------------------------")
         
+    def print_by_rarity(self):
+        print("---- Encounter Table: ----")
+        print("--------------------------")
+        type_index = 0
+        for row in self.encounter_table:
+            #sort each of these with the dict
+            printable_dict = {}
+            for pokemon in row:
+                if pokemon not in printable_dict.keys():
+                    printable_dict[pokemon] = 1
+                else:
+                    printable_dict[pokemon] = printable_dict[pokemon] + 1
+            print(list(self.types)[type_index],": ", sorted([(value,key) for (key,value) in printable_dict.items()], reverse=True))
+            type_index = type_index + 1
+            print("--------------------------")
+            
