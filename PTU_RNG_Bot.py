@@ -8,6 +8,7 @@ class PTU_RNG_Bot:
         self.length_of_each_type = []
         for i in self.type_indices:
             self.length_of_each_type.append(len(type_matrix[i]))
+        self.initialize_common_rarities()
             
     #Initializate initial rarity of 2 for all Pokemon        
     def initialize_common_rarities(self):
@@ -32,13 +33,14 @@ class PTU_RNG_Bot:
             print("Rarity must be of type 'integer.' Could not add.")
             return
     
-        #check to see if duplicate Pokemon
-        if pokemon_name in self.type_matrix:
-            print("Pokemon already exists in matrix. Could not add.")
-            return
+        #check to see if duplicate Pokemon- no longer necessary because removal exists
+        #if pokemon_name in self.type_matrix:
+            #print("Pokemon already exists in table. Could not add.")
+            #return
     
         #Find index for Pokemon in the matrix
-        common_mon = pokemon_name.lower().capitalize() #safe for SquIrTle, squirtle, SQUIRTLE, etc
+        common_mon = pokemon_name.lower().capitalize() #safe for SquIrTle, squirtle, SQUIRTLE, etc- 
+                                                       #always results in "Squirtle"
         common_mon_type = None
         for key, value in self.types.items():
             if key == pokemon_type.lower().capitalize(): #safe for type, tYpe, Type, etc
@@ -95,6 +97,49 @@ class PTU_RNG_Bot:
             self.type_matrix[rare_mon_type].sort() 
             print("Successfully added rare {} to matrix row {}.".format(pokemon_name, pokemon_type))
             
+    #Removes "pokemon_to_remove" num_to_remove times from the encounter table. If the table contains less occurrences of
+    #pokemon_to_remove than the specified num_to_remove, all occurrences are removed.
+    def remove_encounter(self, pokemon_to_remove, num_to_remove):
+        #validate input
+        if (not isinstance(pokemon_to_remove, str) or not isinstance(num_to_remove, int)):
+            print("Inputs must be of type 'string', 'int'. Could not remove.")
+            return
+        
+        #standardize input (ie: SQUIRTLE, Squirtle, SqUiRTlE, etc will all work properly, as long as it is spelled correctly)
+        pokemon_to_remove = pokemon_to_remove.lower().capitalize()
+        
+        #check to see whether the Pokemon actually exists in the table
+        mon_exists = False
+        for row in self.type_matrix:
+            if (pokemon_to_remove in row):
+                mon_exists = True
+        if (not mon_exists):
+            print(pokemon_to_remove, "does not exist in the encounter table. Could not remove.")
+            return
+        
+        #look through encounter table for Pokemon "num_to_remove" times
+        num_removed = 0 #variable to track how many were actually removed, to be printed 
+                        #(for the edge case of the table containing less than num_to_remove)
+        for i in range(0, num_to_remove):
+            #remove Pokemon from table if it exists there
+            removed_true = False #boolean for checking removal on each pass through the table
+            for index, row in enumerate(self.type_matrix):
+                if (pokemon_to_remove in row):
+                    self.type_matrix[index].remove(pokemon_to_remove)
+                    num_removed = num_removed + 1
+                    removed_true = True
+            if not removed_true: #If we didn't remove anything in this pass, there are no more left to remove
+                                 #so we are done removing
+                if num_removed == 1:
+                    print("Successfully removed", num_removed, "instance of", pokemon_to_remove, ".")
+                else:
+                    print("Successfully removed", num_removed, "instance of", pokemon_to_remove, ".")
+                print("There are no more instances of", pokemon_to_remove, "left in the table.")
+                return
+        #If we get to the end without running out of Pokemon to remove, just print the number that were removed
+        print("Successfully removed", num_removed, "instance of", pokemon_to_remove, ".")
+        return
+                
             
             
     #Generates random Pokemon teams of specified "num_mons" Picks from rows and columns of type_matrix
@@ -112,6 +157,7 @@ class PTU_RNG_Bot:
             team.append(generated_mon)
         print("Generated Team: ", team)
         
+    #Generates random Monotype Pokemon teams of specified "num_mons" of a given "type_of_mon"
     def random_from_type(self, type_of_mon, num_mons):
         if type_of_mon not in self.types.keys():
             print("Type is not present in matrix")
@@ -136,6 +182,7 @@ class PTU_RNG_Bot:
         print("--------------------------")
         for type_of_mon, row in self.types.items():
             print("--------------------------")
-            print(type_of_mon,": ", self.type_matrix[row])
+            printable_row = sorted(self.type_matrix[row])
+            print(type_of_mon,": ", printable_row)
         print("--------------------------")
         
