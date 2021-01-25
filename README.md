@@ -79,7 +79,7 @@ encounter_table = [
 <b> How to use: </b>
 - `rng = PTU_RNG_Bot(types, encounter_table)` instantiates the bot with Types of "types" and Encounter Table of "encounter_table".
 - `rng.initialize_common_rarities()` initializes rarities of all Pokemon currently within the encounter table as "common" (Rarity 2).
-- `rng.create_common_encounter("Bulbasaur", "Grass", 2)` inserts common Pokemon "Bulbasaur" to table row "Grass" with a Rarity of 2
+- `rng.create_common_encounter("Bulbasaur", "Grass", 2)` inserts common Pokemon "Bulbasaur" to table row "Grass" with a Rarity of 2.
 - `rng.create_rare_encounter("Greninja", "Dark")` inserts rare Pokemon "Greninja" to table row "Dark".
 - `rng.remove_encounter("Bibarel", "Water", 2)` removes up to 2 instances of Bibarel from the Water row of the encounter table, provided Water is a Type specified within the encounter table and Bibarel exists within it.
 - `rng.generate_team(4)` generates a random team of 4 Pokemon.
